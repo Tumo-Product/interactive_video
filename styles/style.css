@@ -1,0 +1,20 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body{
+    background-color: black;    
+}
+
+.video_block{
+    width: 900px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#video{
+    width: 900px;
+}
+
