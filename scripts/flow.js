@@ -12,6 +12,7 @@ const onPageLoad = async () => {
 
     console.log(tree);
     addVideos();
+    player.videos = document.getElementsByClassName("video");
 }
 
 const addVideos = async () => {
