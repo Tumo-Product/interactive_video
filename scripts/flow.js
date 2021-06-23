@@ -14,6 +14,8 @@ const onPageLoad = async () => {
     view.addVideo(current_video, tree[current_video].src);
     view.update_choices(tree[current_video].choices);
     addVideos();
+
+    player.controls.play(current_video);
 }
 
 const addVideos = () => {
@@ -21,6 +23,12 @@ const addVideos = () => {
 
     for (let i = 0; i < choices.length; i++) {
         view.addVideo(choices[i].ref, tree[choices[i].ref].src);
+
+        if (choices[i + 1] !== undefined) {
+            if (choices[i].ref == choices[i + 1].ref) {
+                break;
+            }
+        }
     }
 }
 
@@ -31,7 +39,7 @@ const next_video = (i) => {
         return;
     }
 
-    view.next_video(current_video);
+    view.next_video();
     addVideos();
     player.controls.play(current_video);
 }

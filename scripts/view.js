@@ -16,9 +16,9 @@ const view = {
         })
     },
 
-    next_video: (new_index) => {
+    next_video: () => {
         $('.choices_block').hide();
-        view.update_choices(tree[new_index].choices);
+        view.update_choices(tree[current_video].choices);
 
         $(".video_block").each(function(index) {
             if ($(this).attr('id') != current_video) {
