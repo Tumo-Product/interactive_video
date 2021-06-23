@@ -17,3 +17,26 @@
     width: 900px;
 }
 
+.choices_block{
+    width: auto;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 141px;
+    left: 771px;
+}
+
+.choices{
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    margin: 0 0 15px 0;
+    border: 5px solid aquamarine;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}

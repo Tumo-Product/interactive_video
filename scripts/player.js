@@ -1,29 +1,21 @@
 const player = {
-    video: undefined,
     controls : {
-        load : () => {
-            player.video[2].removeAttribute("loop");
-            player.video[2].load();
-            player.video[2].pause();
-            player.video[2].addEventListener("timeupdate", player.controls.check_time);
+    
+        play : (id) => {
+            $(`#${id}`).children(0).get(0).play();
+            $(`#${id}`).children(0).get(0).addEventListener("ended", player.controls.toggle_question);
         },
     
-        play : () => {
-            player.video[2].play();
+        pause : (id) => {
+            $(`#${id}`).children(0).get(0).pause();
         },
     
-        pause : () => {
-            player.video[2].pause();
+        rewind_video : (time, id) => {
+            $(`#${id}`).children(0).get(0).currentTime += time;
         },
     
-        rewind_video : (time) => {
-            player.video[2].currentTime += time;
-        },
-    
-        check_time : () => {
-            if (player.video[2].currentTime > 1)
-            player.video[2].pause();
+        toggle_question : () => {
+           $('.choices_block').css("display", "flex");
         }
     }
-    
 }

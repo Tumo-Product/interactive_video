@@ -8,5 +8,22 @@ const view = {
         </div>`;
 
         $("body").prepend(videoBlock);
+    },
+
+    update_choices : (choices) => {
+        $(".choices").each(function(index) {
+            $(this).text(choices[index].name);
+        })
+    },
+
+    next_video: (new_index) => {
+        $('.choices_block').hide();
+        view.update_choices(tree[new_index].choices);
+
+        $(".video_block").each(function(index) {
+            if ($(this).attr('id') != current_video) {
+                $(this).remove();
+            }
+        })
     }
 }
