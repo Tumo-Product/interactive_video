@@ -14,8 +14,6 @@ const onPageLoad = async () => {
     view.addVideo(current_video, tree[current_video].src);
     view.update_choices(tree[current_video].choices);
     addVideos();
-
-    player.controls.play(current_video);
 }
 
 const addVideos = () => {
