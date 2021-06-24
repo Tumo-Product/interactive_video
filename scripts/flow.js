@@ -15,7 +15,6 @@ const onPageLoad = async () => {
     view.update_choices(tree[current_video].choices);
     addVideos();
 
-    player.controls.play(current_video);
 }
 
 const addVideos = () => {
@@ -41,7 +40,7 @@ const next_video = (i) => {
 
     view.next_video();
     addVideos();
-    player.controls.play(current_video);
+    player.controls.play();
 }
 
 $(onPageLoad)

@@ -17,6 +17,10 @@
     width: 900px;
 }
 
+.video_block:hover ~ .controls {
+    display: flex;
+}
+
 .choices_block{
     width: auto;
     display: none;
@@ -39,4 +43,49 @@
     color: white;
     font-size: 22px;
     cursor: pointer;
+}
+
+#play_pause, #rewind{
+    width: auto;
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+
+#play_pause{
+    margin-left: 10px;
+}
+
+#rewind{
+    flex-direction: row;
+    left: 800px;
+}
+
+#play, #pause{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+#front{
+    margin-left: 10px;
+}
+
+#front {
+    margin-left: 10 px;
+}
+
+#play_pause img, #rewind img{
+    width: 35px;
+}
+
+.controls{
+    position: absolute;
+    width: 900px;
+    height: 44px;
+    top: 20px;
+    display: none;
+    align-items: center;
+    top: 555px;
 }

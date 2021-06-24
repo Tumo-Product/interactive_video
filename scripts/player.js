@@ -1,16 +1,25 @@
 const player = {
     controls : {
-        play : (id) => {
-            $(`#${id}`).children(0).get(0).play();
-            $(`#${id}`).children(0).get(0).addEventListener("ended", player.controls.toggle_question);
+        play : () => {
+            $(`#${current_video}`).children(0).get(0).play();
+            $(`#${current_video}`).children(0).get(0).addEventListener("ended", player.controls.toggle_question);
+            $('#play').css("z-index", "0");
         },
     
-        pause : (id) => {
-            $(`#${id}`).children(0).get(0).pause();
+        pause : () => {
+            $(`#${current_video}`).children(0).get(0).pause();
+            $('#play').css("z-index", "2");
+
         },
     
-        rewind_video : (time, id) => {
-            $(`#${id}`).children(0).get(0).currentTime += time;
+        rewind_video : (time) => {
+            if($(`#${current_video}`).children(0).get(0).currentTime == $(`#${current_video}`).children(0).get(0).duration && time < 0)
+            {
+                $('.choices_block').css("display", "none");
+                player.controls.play();
+            }
+            $(`#${current_video}`).children(0).get(0).currentTime += time;
+
         },
     
         toggle_question : () => {
