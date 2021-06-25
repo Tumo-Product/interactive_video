@@ -1,7 +1,27 @@
+@font-face{
+    font-family: Fedra;
+    src: url('../fonts/FedraSansAltPro/FedraSansAltPro-Medium.otf');
+}
+
+@font-face{
+    font-family: FedraBook;
+    src: url('../fonts/FedraSansAltPro/FedraSansAltPro-Book.otf');
+}
+
+@font-face{
+    font-family: FedraDemi;
+    src: url('../fonts/FedraSansAltPro/FedraSansAltPro-Demi.otf');
+}
+
 * {
 	margin: 0;
 	padding: 0;
+    box-sizing: border-box;
+    font-family: Fedra;
+    color: #436980;
+    font-size: 23px;
 }
+
 .video_block{
     width: 900px;
     height: 600px;
@@ -17,75 +37,79 @@
     width: 900px;
 }
 
-.video_block:hover ~ .controls {
-    display: flex;
+body:hover .controls {
+    opacity: 1;
 }
 
-.choices_block{
-    width: auto;
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 141px;
-    left: 771px;
-}
-
-.choices{
-    padding: 5px;
-    width: 100px;
-    height: 100px;
-    margin: 0 0 15px 0;
-    border: 5px solid aquamarine;
-    border-radius: 10px;
+.controls {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-#play_pause, #rewind{
-    width: auto;
-    display: flex;
-    align-items: center;
     position: absolute;
-}
-
-#play_pause{
-    margin-left: 10px;
-}
-
-#rewind{
     flex-direction: row;
-    left: 800px;
+    z-index: 0;
 }
 
-#play, #pause{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
+#pause, #back img {
+    display: none;
 }
 
-#front{
-    margin-left: 10px;
+#front, #back {
+    width: 35px;
+    height: 35px;
 }
 
 #front {
-    margin-left: 10 px;
+    margin-left: 102px;
 }
 
-#play_pause img, #rewind img{
-    width: 35px;
+#back {
+    margin-right: 102px;
 }
 
-.controls{
-    position: absolute;
-    width: 900px;
-    height: 44px;
-    top: 20px;
-    display: none;
+#play, #pause {
+    width: 66px;
+    height: 66px;
+}
+
+.choices_block {
+    z-index: 1;
+    justify-content: center;
     align-items: center;
-    top: 555px;
+    background-color: #F3F3F3;
+    display: none;
+    position: absolute;
+    bottom: 0px;
+    left: 13px;
+    width: 874px;
+    height: 104px;
+    border-radius: 10px 10px 0 0;
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+}
+
+.choices {
+    box-shadow: 5px 5px 5px 0 rgba(222,222,230,0.5), -5px -5px 5px 0 #FEFEFE;
+    width: 47.5%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.choices {
+    margin-right: 3.5%;
+}
+
+.choices:last-of-type {
+    margin: 0;
+}
+
+img {
+    width: 100%;
 }

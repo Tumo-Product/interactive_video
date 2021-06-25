@@ -14,12 +14,12 @@ const vids = {
             src : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_24_StackingChips5_1080p_preview.webm",
             choices : [
                 {
-                    name : "option 01",
-                    ref  : "00"
+                    name : "Option 1",
+                    ref  : "01"
                 },
                 {
-                    name : "option 02",
-                    ref  : "00"
+                    name : "Option 2",
+                    ref  : "01"
                 }
             ]
         },
@@ -52,58 +52,30 @@ const vids = {
             ]
         },
         {
-            id : "000",
+            id : "010",
+            src : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
+            choices : [
+                {
+                    name : "option 01",
+                    ref  : "010"
+                },
+                {
+                    name : "option 02",
+                    ref  : "011"
+                }
+            ]
+        },
+        {
+            id : "011",
             src : "https://cdn.videvo.net/videvo_files/video/premium/getty_56/small_watermarked/istock-1003710026_preview.webm",
             choices : [
                 {
                     name : "option 01",
-                    ref  : "0000"
+                    ref  : "010"
                 },
                 {
                     name : "option 02",
-                    ref  : "0001"
-                }
-            ]
-        },
-        {
-            id : "001",
-            src : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
-            choices : [
-                {
-                    name : "option 01",
-                    ref  : "0010"
-                },
-                {
-                    name : "option 02",
-                    ref  : "0011"
-                }
-            ]
-        },
-        {
-            id : "0000",
-            src : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
-            choices : [
-                {
-                    name : "option 01",
-                    ref  : "0000"
-                },
-                {
-                    name : "option 02",
-                    ref  : "0001"
-                }
-            ]
-        },
-        {
-            id : "0001",
-            src : "https://cdn.videvo.net/videvo_files/video/premium/getty_56/small_watermarked/istock-1003710026_preview.webm ",
-            choices : [
-                {
-                    name : "option 01",
-                    ref  : "0010"
-                },
-                {
-                    name : "option 02",
-                    ref  : "0011"
+                    ref  : "011"
                 }
             ]
         }

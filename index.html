@@ -9,33 +9,22 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="choices_block"> 
-        <div class="choices" onclick="next_video(0)">Option 1</div> 
-        <div class="choices" onclick="next_video(1)">Option 2 </div> 
-    </div>
+    <div class="choices_block"></div>
     
     <div class="controls">
-
-        <div id="play_pause">
-            <div id="play" onclick="player.controls.play()" style="z-index: 2;">
-                <img src="images/play.jpeg" alt="">
-            </div>
-            <div id="pause" onclick="player.controls.pause()" style="z-index: 1;">
-                <img src="images/pause.png" alt="">
-            </div>
+        <div id="back" onclick="player.controls.rewind_video(-10)" style="z-index: 2;">
+            <img src="images/move_back.svg" alt="">
         </div>
-
-        <div id="rewind">
-            <div id="back" onclick="player.controls.rewind_video(-10)" style="z-index: 2;">
-                <img src="images/play.jpeg" alt="">
-            </div>
-            <div id="front" onclick="player.controls.rewind_video(10)" style="z-index: 1;">
-                <img src="images/pause.png" alt="">
-            </div>
+        <div id="play" onclick="player.controls.play()" style="z-index: 2;">
+            <img src="images/play.svg" alt="">
         </div>
-
+        <div id="pause" onclick="player.controls.pause()" style="z-index: 1;">
+            <img src="images/pause.svg" alt="">
+        </div>
+        <div id="front" onclick="player.controls.rewind_video(10)" style="z-index: 1;">
+            <img src="images/move_forward.svg" alt="">
+        </div>
     </div>
-
 
     <script src="scripts/parser.js"></script>
     <script src="scripts/view.js"></script>

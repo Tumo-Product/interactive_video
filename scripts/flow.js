@@ -2,6 +2,7 @@ let videos;
 let tree = [];
 let tree_keys = [];
 let current_video = '0';
+let addedVideos = [];
 
 const onPageLoad = async () => {
     videos = await parser.dataFetch();
@@ -14,21 +15,26 @@ const onPageLoad = async () => {
     view.addVideo(current_video, tree[current_video].src);
     view.update_choices(tree[current_video].choices);
     addVideos();
-
 }
 
 const addVideos = () => {
     let choices = tree[current_video].choices;
+    addedVideos = [];
 
     for (let i = 0; i < choices.length; i++) {
-        view.addVideo(choices[i].ref, tree[choices[i].ref].src);
-
-        if (choices[i + 1] !== undefined) {
-            if (choices[i].ref == choices[i + 1].ref) {
-                break;
-            }
+        if (addedVideos.includes(choices[i].ref)) {
+            continue;
         }
+        
+        view.addVideo(choices[i].ref, tree[choices[i].ref].src);
+        addedVideos[i] = choices[i].ref;
     }
+
+    for (let i = 0; i < choices.length; i++) {
+        view.addChoice(i);
+    }
+
+    view.update_choices(tree[current_video].choices);
 }
 
 const next_video = (i) => {
