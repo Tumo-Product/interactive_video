@@ -52,6 +52,10 @@ body:hover .controls {
     z-index: 0;
 }
 
+.controls img {
+    cursor: pointer;
+}
+
 #pause, #back img {
     display: none;
 }

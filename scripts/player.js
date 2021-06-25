@@ -4,6 +4,7 @@ const player = {
             document.getElementById(`v_${current_video}`).play();
             $("#play").hide();
             $("#pause").show();
+            $('.choices_block').css("display", "none");
         },
     
         pause : () => {

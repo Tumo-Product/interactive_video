@@ -41,6 +41,8 @@ const view = {
         view.current_video = document.getElementById(`v_${current_video}`);
     },
     toggle_question : () => {
+        $("#play").show();
+        $("#pause").hide();
         $('.choices_block').css("display", "flex");
     },
     update_controls: () => {
