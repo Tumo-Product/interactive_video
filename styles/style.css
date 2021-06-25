@@ -22,6 +22,10 @@
     font-size: 23px;
 }
 
+body {
+    overflow: hidden
+}
+
 .video_block{
     width: 900px;
     height: 600px;
@@ -90,15 +94,24 @@ body:hover .controls {
     justify-content: center;
     align-items: center;
     background-color: #F3F3F3;
-    display: none;
+    display: flex;
     position: absolute;
-    bottom: 0px;
+    bottom: -104px;
     left: 13px;
     width: 874px;
     height: 104px;
     border-radius: 10px 10px 0 0;
     padding-left: 3.5%;
     padding-right: 3.5%;
+    transition: 1s;
+}
+
+.show {
+    bottom: 0px !important;
+}
+
+.hide {
+    bottom: -104px !important;
 }
 
 .choices {
@@ -113,6 +126,11 @@ body:hover .controls {
     border-radius: 10px;
     position: relative;
     opacity: 1;
+    padding: 5px 10px 5px 10px;
+}
+
+.choices p {
+    overflow: auto;
 }
 
 .choices:hover p {

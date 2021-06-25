@@ -4,7 +4,7 @@ const player = {
             document.getElementById(`v_${current_video}`).play();
             $("#play").hide();
             $("#pause").show();
-            $('.choices_block').css("display", "none");
+            view.hide_question();
         },
     
         pause : () => {
@@ -18,7 +18,7 @@ const player = {
 
             if (currentVideo.currentTime == currentVideo.duration && time < 0)
             {
-                $('.choices_block').css("display", "none");
+                view.hide_question();
                 player.controls.play();
             }
 

@@ -4,6 +4,10 @@ let tree_keys = [];
 let current_video = '0';
 let addedVideos = [];
 
+const timeout = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const onPageLoad = async () => {
     videos = await parser.dataFetch();
 

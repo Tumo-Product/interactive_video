@@ -20,7 +20,7 @@ const view = {
 
         view.current_video = document.getElementById(`v_${current_video}`);
 
-        view.current_video.addEventListener("ended", view.toggle_question);
+        view.current_video.addEventListener("ended", view.show_question);
         view.current_video.addEventListener('timeupdate', view.update_controls);
     },
     addChoice: (i) => {
@@ -32,8 +32,11 @@ const view = {
         `;
         $(".choices_block").append(choice);
     },
-    update_choices : (choices) => {
+    update_choices : async (choices) => {
+        let choiceCount = 0;
+
         $(".choices").each(function(index) {
+            choiceCount++;
             $(this).children("p").text(choices[index].name);
 
             $(this).mousedown(function () {
@@ -46,14 +49,20 @@ const view = {
                 $(this).find(".click").remove();
             });
         });
+
+        $(".choices").attr("style", `width: ${852 / choiceCount}px !important;`);
+
+        await timeout(100);
+        view.fitText("choices");
     },
     next_video: () => {
         $("#back img").hide();
+
         $(".choices").each (function() {
             $(this).remove();
         });
         
-        $('.choices_block').hide();
+        view.hide_question();
 
         $(".video_block").each(function(index) {
             if ($(this).attr('id') != current_video) {
@@ -63,10 +72,16 @@ const view = {
 
         view.current_video = document.getElementById(`v_${current_video}`);
     },
-    toggle_question : () => {
+    show_question : () => {
         $("#play").show();
         $("#pause").hide();
-        $('.choices_block').css("display", "flex");
+        
+        $(".choices_block").removeClass("hide");
+        $(".choices_block").addClass("show");
+    },
+    hide_question: () => {
+        $(".choices_block").removeClass("show");
+        $(".choices_block").addClass("hide");
     },
     update_controls: () => {
         let duration = view.current_video.duration;
@@ -85,5 +100,16 @@ const view = {
         else if (currentTime > duration - 5) {
             $("#front img").hide();
         }
-    }
+    },
+    fitText: (name) => {
+		$(`.${name} p`).each(function (i) {
+			let size;
+			let desiredHeight = 60;
+
+			while ($(this).prop("scrollHeight") > desiredHeight || $(this).prop('scrollWidth') > $(this).width()) {
+				size = parseInt($(this).css("font-size"), 10);
+				$(this).css("font-size", size - 1);
+			}
+		});
+	}
 }
