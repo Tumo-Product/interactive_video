@@ -12,6 +12,8 @@ const onPageLoad = async () => {
         tree_keys[i] = videos.segments[i].id;
     }
 
+    view.onStart();
+
     view.addVideo(current_video, tree[current_video].src);
     view.update_choices(tree[current_video].choices);
     addVideos();

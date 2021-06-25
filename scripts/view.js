@@ -1,6 +1,13 @@
 const view = {
     current_video: undefined,
 
+    onStart: () => {
+        $(".control").mouseenter(function() {
+            $("video").css("opacity", "0.42");
+        }).mouseleave(function() {
+            $("video").css("opacity", "1");
+        });
+    },
     addVideo: (id, src) => {
         let videoBlock = `
         <div id="${id}" class="video_block">
@@ -17,15 +24,31 @@ const view = {
         view.current_video.addEventListener('timeupdate', view.update_controls);
     },
     addChoice: (i) => {
-        let choice = `<div class="choices" onclick="next_video(${i})">Option 2 </div>`;
+        let choice =
+        `
+        <div class="choices" onclick="next_video(${i})">
+            <p></p>
+        </div>
+        `;
         $(".choices_block").append(choice);
     },
     update_choices : (choices) => {
         $(".choices").each(function(index) {
-            $(this).text(choices[index].name);
+            $(this).children("p").text(choices[index].name);
+
+            $(this).mousedown(function () {
+                $(this).append(`<div class="click"></div>`);
+            });
+            $(this).mouseup(async function () {
+                $(this).find(".click").remove();
+            });
+            $(this).mouseleave(function () {
+                $(this).find(".click").remove();
+            });
         });
     },
     next_video: () => {
+        $("#back img").hide();
         $(".choices").each (function() {
             $(this).remove();
         });
