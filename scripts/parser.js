@@ -14,11 +14,7 @@ const vids = {
             src : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_24_StackingChips5_1080p_preview.webm",
             choices : [
                 {
-                    name : "KapuytKapuytKapuyt",
-                    ref  : "01"
-                },
-                {
-                    name : "Karmir",
+                    name : "KapuytKapuytKapuytKapuytKapuytKapuyt Kapuyt Kapuyt Kapuyt Kapuyt Kapuyt KapuytKapuytKapuyt",
                     ref  : "01"
                 },
                 {

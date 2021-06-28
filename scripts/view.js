@@ -50,7 +50,9 @@ const view = {
             });
         });
 
-        $(".choices").attr("style", `width: ${852 / choiceCount}px !important;`);
+        $(".choices").css("width", `${770 / choiceCount}px`);
+        $(".choices").css("margin-right",  `${62 / choiceCount}px`);
+        $(".choices").last().css("margin-right",  0);
 
         await timeout(100);
         view.fitText("choices");
@@ -104,9 +106,9 @@ const view = {
     fitText: (name) => {
 		$(`.${name} p`).each(function (i) {
 			let size;
-			let desiredHeight = 60;
+			let desiredHeight = 50;
 
-			while ($(this).prop("scrollHeight") > desiredHeight || $(this).prop('scrollWidth') > $(this).width()) {
+			while ($(this).prop("scrollHeight") > desiredHeight || $(this).width() > 225) {
 				size = parseInt($(this).css("font-size"), 10);
 				$(this).css("font-size", size - 1);
 			}

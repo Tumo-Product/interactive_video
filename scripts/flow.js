@@ -19,7 +19,6 @@ const onPageLoad = async () => {
     view.onStart();
 
     view.addVideo(current_video, tree[current_video].src);
-    view.update_choices(tree[current_video].choices);
     addVideos();
 }
 
