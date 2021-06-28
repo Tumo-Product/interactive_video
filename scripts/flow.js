@@ -22,7 +22,7 @@ const onPageLoad = async () => {
     addVideos();
 }
 
-const addVideos = () => {
+const addVideos = async () => {
     let choices = tree[current_video].choices;
     addedVideos = [];
 
@@ -42,14 +42,14 @@ const addVideos = () => {
     view.update_choices(tree[current_video].choices);
 }
 
-const next_video = (i) => {
+const next_video = async (i) => {
     current_video = tree[current_video].choices[i].ref;
     
     if (tree[current_video] === undefined) {
         return;
     }
 
-    view.next_video();
+    await view.next_video();
     addVideos();
     player.controls.play();
 }

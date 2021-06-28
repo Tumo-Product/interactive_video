@@ -54,15 +54,10 @@ const view = {
         $(".choices").css("margin-right",  `${62 / choiceCount}px`);
         $(".choices").last().css("margin-right",  0);
 
-        await timeout(100);
         view.fitText("choices");
     },
-    next_video: () => {
+    next_video: async () => {
         $("#back img").hide();
-
-        $(".choices").each (function() {
-            $(this).remove();
-        });
         
         view.hide_question();
 
@@ -70,6 +65,11 @@ const view = {
             if ($(this).attr('id') != current_video) {
                 $(this).remove();
             }
+        });
+
+        await timeout(1000);
+        $(".choices").each (function() {
+            $(this).remove();
         });
 
         view.current_video = document.getElementById(`v_${current_video}`);
