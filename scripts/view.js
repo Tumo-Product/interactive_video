@@ -1,11 +1,29 @@
 const view = {
     current_video: undefined,
+    mouseMoving: false,
+    hovering: false,
 
     onStart: () => {
-        $(".control").mouseenter(function() {
-            $("video").css("opacity", "0.42");
+        let timer;
+
+        $(".control").hover(function() {
+            $(".controls").css("opacity", 1);
+            view.hovering = true;
         }).mouseleave(function() {
-            $("video").css("opacity", "1");
+            view.hovering = false;
+        });
+
+        $('body').mousemove(function() {
+            if (!view.hovering) {
+                $(".controls").css("opacity", 1);
+                clearTimeout(timer);
+
+                timer = setTimeout(function(){
+                    $(".controls").css("opacity", 0);
+                }, 2000);
+            } else {
+                clearTimeout(timer);
+            }
         });
     },
     addVideo: (id, src) => {
@@ -76,9 +94,8 @@ const view = {
         view.current_video = document.getElementById(`v_${current_video}`);
     },
     show_question : () => {
-        $("#play").show();
-        $("#pause").hide();
-        
+        $(".blackout").css("opacity", "0");
+        $(".controls").hide();
         $(".choices_block").removeClass("hide");
         $(".choices_block").addClass("show");
     },
@@ -114,5 +131,20 @@ const view = {
 				$(this).css("font-size", size - 1);
 			}
 		});
-	}
+	},
+
+    change_styles : (event) => {
+        if (event == 0){
+            $(".blackout").css("opacity", "0");
+            $("#play").hide();
+            $("#pause").show();
+        }
+        else{
+            $(".blackout").css("opacity", "0.42");
+            $("#play").show();
+            $("#pause").hide();
+        }
+
+       
+    }
 }

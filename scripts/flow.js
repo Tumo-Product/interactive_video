@@ -46,6 +46,7 @@ const addVideos = async () => {
 
 const next_video = async (i) => {
     current_video = tree[current_video].choices[i].ref;
+    $(".controls").css("display", "flex");
     
     if (tree[current_video] === undefined) {
         return;

@@ -2,15 +2,13 @@ const player = {
     controls : {
         play : () => {
             document.getElementById(`v_${current_video}`).play();
-            $("#play").hide();
-            $("#pause").show();
+            view.change_styles(0);
             view.hide_question();
         },
     
         pause : () => {
             document.getElementById(`v_${current_video}`).pause();
-            $("#play").show();
-            $("#pause").hide();
+            view.change_styles(1);
         },
     
         rewind_video : (time) => {

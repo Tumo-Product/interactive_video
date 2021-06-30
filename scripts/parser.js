@@ -11,7 +11,7 @@ const vids = {
     segments: [
         {
             id : "0",
-            src : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_24_StackingChips5_1080p_preview.webm",
+            src : "http://techslides.com/demos/sample-videos/small.mp4",
             choices : [
                 {
                     name : "KapuytKapuytKapuytKapuytKapuytKapuyt Kapuyt Kapuyt Kapuyt Kapuyt Kapuyt KapuytKapuytKapuyt",
