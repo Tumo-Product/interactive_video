@@ -56,6 +56,12 @@ const view = {
 
         view.fitText("choices");
     },
+    clear_choices: async () => {
+        await timeout(1000);
+        $(".choices").each (function() {
+            $(this).remove();
+        });
+    },
     next_video: async () => {
         $("#back img").hide();
         
@@ -65,11 +71,6 @@ const view = {
             if ($(this).attr('id') != current_video) {
                 $(this).remove();
             }
-        });
-
-        await timeout(1000);
-        $(".choices").each (function() {
-            $(this).remove();
         });
 
         view.current_video = document.getElementById(`v_${current_video}`);
@@ -108,7 +109,7 @@ const view = {
 			let size;
 			let desiredHeight = 50;
 
-			while ($(this).prop("scrollHeight") > desiredHeight || $(this).width() > 225) {
+			while ($(this).prop("scrollHeight") > desiredHeight || $(this).width() > $(this).parent().width()) {
 				size = parseInt($(this).css("font-size"), 10);
 				$(this).css("font-size", size - 1);
 			}

@@ -25,6 +25,8 @@ const onPageLoad = async () => {
 const addVideos = async () => {
     let choices = tree[current_video].choices;
     addedVideos = [];
+    
+    await view.clear_choices();
 
     for (let i = 0; i < choices.length; i++) {
         if (addedVideos.includes(choices[i].ref)) {
@@ -49,7 +51,7 @@ const next_video = async (i) => {
         return;
     }
 
-    await view.next_video();
+    view.next_video();
     addVideos();
     player.controls.play();
 }
