@@ -2,6 +2,7 @@ const view = {
     current_video: undefined,
     mouseMoving: false,
     hovering: false,
+    shown: false,
 
     onStart: () => {
         let timer;
@@ -38,8 +39,7 @@ const view = {
 
         view.current_video = document.getElementById(`v_${current_video}`);
 
-        view.current_video.addEventListener("ended", view.show_question);
-        view.current_video.addEventListener('timeupdate', view.update_controls);
+        view.current_video.addEventListener('timeupdate',   view.update);
     },
     addChoice: (i) => {
         let choice =
@@ -103,21 +103,33 @@ const view = {
         $(".choices_block").removeClass("show");
         $(".choices_block").addClass("hide");
     },
-    update_controls: () => {
-        let duration = view.current_video.duration;
-        let currentTime = view.current_video.currentTime;
+    update: () => {
+        let duration        = view.current_video.duration;
+        let currentTime     = view.current_video.currentTime;
+        let controlDelay    = loopOffset + 5;
 
-        if (currentTime > 5) {
+        if (currentTime > duration - loopOffset) {
+            if (view.shown != true) {
+                view.show_question();
+                $("pause").hide();
+            }
+
+            view.shown = true;
+            
+            player.controls.rewind_video(-loopOffset);
+            player.controls.play();
+        }
+
+        if (currentTime > controlDelay) {
             $("#back img").show();
         }
-        else if (currentTime < 5) {
+        else if (currentTime < controlDelay) {
             $("#back img").hide();
         }
-
-        if (currentTime < duration - 5) {
+        if (currentTime < duration - controlDelay) {
             $("#front img").show();
         }
-        else if (currentTime > duration - 5) {
+        else if (currentTime > duration - controlDelay) {
             $("#front img").hide();
         }
     },
@@ -132,7 +144,6 @@ const view = {
 			}
 		});
 	},
-
     change_styles : (event) => {
         if (event == 0){
             $(".blackout").css("opacity", "0");
@@ -144,7 +155,5 @@ const view = {
             $("#play").show();
             $("#pause").hide();
         }
-
-       
     }
 }

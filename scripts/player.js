@@ -3,7 +3,7 @@ const player = {
         play : () => {
             document.getElementById(`v_${current_video}`).play();
             view.change_styles(0);
-            view.hide_question();
+            // view.hide_question();
         },
     
         pause : () => {
@@ -16,7 +16,7 @@ const player = {
 
             if (currentVideo.currentTime == currentVideo.duration && time < 0)
             {
-                view.hide_question();
+                // view.hide_question();
                 player.controls.play();
             }
 

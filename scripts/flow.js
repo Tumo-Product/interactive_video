@@ -1,8 +1,9 @@
 let videos;
 let tree = [];
 let tree_keys = [];
-let current_video = '0';
 let addedVideos = [];
+let current_video = '0';
+let loopOffset = 1;
 
 const timeout = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -10,7 +11,7 @@ const timeout = (ms) => {
 
 const onPageLoad = async () => {
     videos = await parser.dataFetch();
-    videos = videos.data.data.segments;
+    videos = videos.data.data;
 
     for (let i = 0; i < videos.segments.length; i++) {
         tree[videos.segments[i].id] = {src : videos.segments[i].src, choices : videos.segments[i].choices};
