@@ -1,9 +1,6 @@
-// axios.defaults.baseURL = "https://blackboxbasic.herokuapp.com/";
-
 const parser = {
     dataFetch: async () => {
-        return vids;
-        // return axios.get(config.query_url + _uid);
+        return axios.get(config.query_url + _uid);
     }
 }
 
