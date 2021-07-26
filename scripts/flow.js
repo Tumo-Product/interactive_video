@@ -3,7 +3,6 @@ let tree = [];
 let tree_keys = [];
 let addedVideos = [];
 let current_video = '0';
-let loopOffset = 1;
 
 const timeout = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -14,7 +13,7 @@ const onPageLoad = async () => {
     videos = videos.data.data;
 
     for (let i = 0; i < videos.segments.length; i++) {
-        tree[videos.segments[i].id] = {src : videos.segments[i].src, choices : videos.segments[i].choices};
+        tree[videos.segments[i].id] = { src : videos.segments[i].src, choices : videos.segments[i].choices, loopSrc: videos.segments[i].loopSrc };
         tree_keys[i] = videos.segments[i].id;
     }
 
@@ -29,6 +28,8 @@ const addVideos = async () => {
     addedVideos = [];
     
     await view.clear_choices();
+
+    view.addVideo(`l_${current_video}`, tree[current_video].loopSrc)
 
     for (let i = 0; i < choices.length; i++) {
         if (addedVideos.includes(choices[i].ref)) {

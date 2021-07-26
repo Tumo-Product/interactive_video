@@ -1,5 +1,8 @@
 const parser = {
     dataFetch: async () => {
+        let  url	= new URL(document.location.href);
+		let _uid    = url.searchParams.get("_uid");
+        
         return axios.get(config.query_url + _uid);
     }
 }
@@ -7,8 +10,9 @@ const parser = {
 const vids = {
     segments: [
         {
-            id : "0",
-            src : "http://techslides.com/demos/sample-videos/small.mp4",
+            id      : "0",
+            src     : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            loopSrc : "http://techslides.com/demos/sample-videos/small.mp4",
             choices : [
                 {
                     name : "KapuytKapuytKapuytKapuytKapuytKapuyt Kapuyt Kapuyt Kapuyt Kapuyt Kapuyt KapuytKapuytKapuyt",
@@ -21,8 +25,9 @@ const vids = {
             ]
         },
         {
-            id : "00",
-            src : "https://cdn.videvo.net/videvo_files/video/premium/getty_56/small_watermarked/istock-1003710026_preview.webm",
+            id      : "00",
+            src     : "https://cdn.videvo.net/videvo_files/video/premium/getty_56/small_watermarked/istock-1003710026_preview.webm",
+            loopSrc : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
             choices : [
                 {
                     name : "optionoptionoption option optionoptionoption option 01",
@@ -43,8 +48,9 @@ const vids = {
             ]
         },
         {
-            id : "01",
-            src : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
+            id      : "01",
+            src     : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
+            loopSrc : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
             choices : [
                 {
                     name : "option 01",
@@ -57,8 +63,9 @@ const vids = {
             ]
         },
         {
-            id : "000",
-            src : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
+            id      : "000",
+            src     : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
+            loopSrc : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
             choices : [
                 {
                     name : "option 01",
@@ -71,8 +78,9 @@ const vids = {
             ]
         },
         {
-            id : "010",
-            src : "https://cdn.videvo.net/videvo_files/video/premium/getty_56/small_watermarked/istock-1003710026_preview.webm",
+            id      : "010",
+            src     : "https://cdn.videvo.net/videvo_files/video/premium/getty_56/small_watermarked/istock-1003710026_preview.webm",
+            loopSrc : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
             choices : [
                 {
                     name : "option 01",

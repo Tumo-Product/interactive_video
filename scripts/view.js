@@ -1,13 +1,13 @@
 const view = {
-    current_video: undefined,
-    mouseMoving: false,
-    hovering: false,
-    shown: false,
+    current_video   : undefined,
+    loopVideo       : undefined,
+    mouseMoving     : false,
+    hovering        : false,
 
     onStart: () => {
         let timer;
 
-        $(".control").hover(function() {
+        $(".control").mouseenter(function() {
             $(".controls").css("opacity", 1);
             view.hovering = true;
         }).mouseleave(function() {
@@ -37,9 +37,50 @@ const view = {
 
         $("body").prepend(videoBlock);
 
-        view.current_video = document.getElementById(`v_${current_video}`);
+        if (id.charAt(0) != "l") {
+            view.current_video  = document.getElementById(`v_${current_video}`);
+            view.current_video.addEventListener('timeupdate', view.update);
+        } else {
+            loopId = `v_l_${current_video}`;
 
-        view.current_video.addEventListener('timeupdate',   view.update);
+            view.loopVideo      = document.getElementById(loopId);
+            view.loopVideo.addEventListener('timeupdate', function() {
+                view.loop(loopId);
+            });
+        }
+    },
+    loop: (id) => {
+        let duration        = view.loopVideo.duration;
+        let currentTime     = view.loopVideo.currentTime;
+
+        if (currentTime >= duration) {
+            player.controls.play(id);
+        }
+    },
+    update: () => {
+        let duration        = view.current_video.duration;
+        let currentTime     = view.current_video.currentTime;
+
+        if (currentTime >= duration) {
+            view.show_question();
+            $("pause").hide();
+
+            $(`#${current_video}`).remove();
+            player.controls.play(`v_l_${current_video}`);
+        }
+
+        if (currentTime > 5) {
+            $("#back img").show();
+        }
+        else if (currentTime < 5) {
+            $("#back img").hide();
+        }
+        if (currentTime < duration - 5) {
+            $("#front img").show();
+        }
+        else if (currentTime > duration - 5) {
+            $("#front img").hide();
+        }
     },
     addChoice: (i) => {
         let choice =
@@ -102,36 +143,6 @@ const view = {
     hide_question: () => {
         $(".choices_block").removeClass("show");
         $(".choices_block").addClass("hide");
-    },
-    update: () => {
-        let duration        = view.current_video.duration;
-        let currentTime     = view.current_video.currentTime;
-        let controlDelay    = loopOffset + 5;
-
-        if (currentTime > duration - loopOffset) {
-            if (view.shown != true) {
-                view.show_question();
-                $("pause").hide();
-            }
-
-            view.shown = true;
-            
-            player.controls.rewind_video(-loopOffset);
-            player.controls.play();
-        }
-
-        if (currentTime > controlDelay) {
-            $("#back img").show();
-        }
-        else if (currentTime < controlDelay) {
-            $("#back img").hide();
-        }
-        if (currentTime < duration - controlDelay) {
-            $("#front img").show();
-        }
-        else if (currentTime > duration - controlDelay) {
-            $("#front img").hide();
-        }
     },
     fitText: (name) => {
 		$(`.${name} p`).each(function (i) {
