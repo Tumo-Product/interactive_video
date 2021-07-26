@@ -121,16 +121,20 @@ const view = {
             $(this).remove();
         });
     },
-    next_video: async () => {
+    next_video: async (old_video) => {
         $("#back img").hide();
         
         view.hide_question();
 
-        $(".video_block").each(function(index) {
-            if ($(this).attr('id') != current_video) {
-                $(this).remove();
-            }
-        });
+        if (old_video == undefined) {
+            $(".video_block").each(function(index) {
+                if ($(this).attr('id') != current_video) {
+                    $(this).remove();
+                }
+            });
+        } else {
+            $(`#l_${old_video}`).remove();
+        }
 
         view.current_video = document.getElementById(`v_${current_video}`);
     },
