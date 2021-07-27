@@ -2,6 +2,7 @@ const view = {
     current_video   : undefined,
     loopVideo       : undefined,
     mouseMoving     : false,
+    loaderOpen      : true,
     hovering        : false,
 
     onStart: () => {
@@ -26,6 +27,12 @@ const view = {
                 clearTimeout(timer);
             }
         });
+    },
+    toggleLoader: () => {
+        view.loaderOpen = !view.loaderOpen;
+
+        if (view.loaderOpen)    $("#loadingScreen").show();
+        else                    $("#loadingScreen").hide();
     },
     addVideo: (id, src) => {
         let videoBlock = `
@@ -121,19 +128,24 @@ const view = {
             $(this).remove();
         });
     },
-    next_video: async (old_video) => {
+    next_video: async (remove) => {
         $("#back img").hide();
         
         view.hide_question();
 
-        if (old_video == undefined) {
+        if (remove == undefined) {
             $(".video_block").each(function(index) {
                 if ($(this).attr('id') != current_video) {
                     $(this).remove();
                 }
             });
         } else {
-            $(`#l_${old_video}`).remove();
+            $(`#l_${remove[0]}`).remove();
+
+            for (let i = 1; i < remove.length; i++) {
+                $(`#l_${remove[i]}`).remove();
+                $(  `#${remove[i]}`).remove();
+            }
         }
 
         view.current_video = document.getElementById(`v_${current_video}`);

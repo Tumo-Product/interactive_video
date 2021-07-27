@@ -22,7 +22,10 @@ const onPageLoad = async () => {
     if (!addAllVideos) {
         view.addVideo(current_video, tree[current_video].src);
     }
-    addVideos();
+
+    await addVideos();
+
+    view.toggleLoader();
 }
 
 const addVideos = async () => {
@@ -57,17 +60,28 @@ const addVideos = async () => {
     view.update_choices(tree[current_video].choices);
 }
 
-const next_video = async (i) => {
+const next_video = async (index) => {
     let old_video = current_video;
-    current_video = tree[current_video].choices[i].ref;
+    current_video = tree[current_video].choices[index].ref;
     $(".controls").css("display", "flex");
     
     if (tree[current_video] === undefined) {
         return;
     }
 
-    view.next_video(old_video);
-    if (!addAllVideos) addVideos();
+    if (!addAllVideos) {
+        view.next_video();
+        addVideos();
+    } else {
+        let remove = [];
+        remove.push(old_video);
+
+        for (let i = 0; i < tree[old_video].choices.length; i++) {
+            if (i != index) remove.push(tree[old_video].choices[i].ref);
+        }
+
+        view.next_video(remove);
+    }
     player.controls.play();
 }
 
