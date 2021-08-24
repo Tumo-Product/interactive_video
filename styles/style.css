@@ -18,12 +18,11 @@
 	padding: 0;
     box-sizing: border-box;
     font-family: Fedra;
-    color: #436980;
     font-size: 23px;
 }
 
 body {
-    overflow: hidden
+    overflow: hidden;
 }
 
 .container {
@@ -63,8 +62,6 @@ body {
     opacity: 0;
     transition: 0.2s;
 }
-
-
 
 .blackout {
     width: 100%;
@@ -132,7 +129,46 @@ body {
     margin-top: 600px !important;
 }
 
-.choices {
+.stickyChoices {
+    z-index: 1;
+    background: transparent;
+    position: absolute;
+    width: 900px;
+    height: 600px;
+    transition: 0.5s;
+}
+
+.stickyShow {
+    opacity: 1;
+}
+.stickyHide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.stickyChoices .choices {
+    cursor: pointer;
+    position: absolute;
+    width: 350px;
+    height: 80px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.stickyChoices .choices  p{
+    text-align: center;
+    font-size: 23px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.choices_block .choices {
     box-shadow: 5px 5px 5px 0 rgba(222,222,230,0.5), -5px -5px 5px 0 #FEFEFE;
     width: 47.5%;
     height: 70px;
@@ -145,11 +181,12 @@ body {
     position: relative;
     opacity: 1;
     padding: 10px 16px;
+    margin-right: 3.5%;
 }
 
-.choices p {
+.choices_block .choices p {
+    color: #436980;
     font-size: 23px;
-    overflow: visible;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -160,11 +197,7 @@ body {
     opacity: 0.42;
 }
 
-.choices {
-    margin-right: 3.5%;
-}
-
-.choices:last-of-type {
+.choices_block .choices:last-of-type {
     margin: 0;
 }
 

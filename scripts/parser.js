@@ -1,5 +1,6 @@
 const parser = {
     dataFetch: async () => {
+        return vids;
         let  url	= new URL(document.location.href);
 		let _uid    = url.searchParams.get("_uid");
         
@@ -16,10 +17,16 @@ const vids = {
             choices : [
                 {
                     name : "KapuytKapuytKapuytKapuytKapuytKapuyt Kapuyt Kapuyt Kapuyt Kapuyt Kapuyt KapuytKapuytKapuyt",
+                    pos  : {
+                        x: 100, y: 100
+                    },
                     ref  : "00"
                 },
                 {
                     name : "Karmir",
+                    pos  : {
+                        x: 300, y: 300
+                    },
                     ref  : "01"
                 }
             ]

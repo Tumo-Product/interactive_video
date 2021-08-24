@@ -8,6 +8,9 @@ const view = {
     onStart: () => {
         let timer;
 
+        view.current_video  = document.getElementById(`v_0`);
+        view.loopVideo      = document.getElementById(`v_l_0`);
+
         $(".control").mouseenter(function() {
             $(".controls").css("opacity", 1);
             view.hovering = true;
@@ -45,14 +48,10 @@ const view = {
         $("body").prepend(videoBlock);
 
         if (id.charAt(0) != "l") {
-            view.current_video  = document.getElementById(`v_${current_video}`);
-            view.current_video.addEventListener('timeupdate', view.update);
+            document.getElementById(`v_${id}`).addEventListener('timeupdate', view.update);
         } else {
-            loopId = `v_l_${current_video}`;
-
-            view.loopVideo      = document.getElementById(loopId);
-            view.loopVideo.addEventListener('timeupdate', function() {
-                view.loop(loopId);
+            document.getElementById(`v_${id}`).addEventListener('timeupdate', function() {
+                view.loop(`v_${id}`);
             });
         }
     },
@@ -89,41 +88,69 @@ const view = {
             $("#front img").hide();
         }
     },
-    addChoice: (i) => {
+    changeChoiceStyle : async (sticky) => {
+        if (sticky) {
+            $("#choices").css("transition", "0s");
+
+            $("#choices").removeClass   ("choices_block show hide");
+            $("#choices").addClass      ("stickyChoices stickyHide");
+            await timeout(15);
+
+            $("#choices").css("transition", "1s");
+        } else {
+            $("#choices").css("transition", "0s");
+
+            $("#choices").removeClass   ("stickyChoices stickyShow stickyHide");
+            $("#choices").addClass      ("choices_block hide");
+            await timeout(15);
+
+            $("#choices").css("transition", "1s");
+        }
+    },
+    addChoice: (i, pos) => {
         let choice =
         `
         <div class="choices" onclick="next_video(${i})">
             <p></p>
         </div>
         `;
-        $(".choices_block").append(choice);
+        
+        $("#choices").append(choice);
+
+        if (pos !== undefined) {
+            $(".choices").eq(i).css("left", pos.x);
+            $(".choices").eq(i).css("top", pos.y);
+        }
     },
     update_choices : async (choices) => {
-        let choiceCount = 0;
 
-        $(".choices").each(function(index) {
-            choiceCount++;
-            $(this).children("p").text(choices[index].name);
+        if (!stickyChoices) {
+            let choiceCount = 0;
+            $(".choices").each(function(index) {
+                choiceCount++;
+                $(this).children("p").text(choices[index].name);
 
-            $(this).mousedown(function () {
-                $(this).append(`<div class="click"></div>`);
+                $(this).mousedown(function () {
+                    $(this).append(`<div class="click"></div>`);
+                });
+                $(this).mouseup(async function () {
+                    $(this).find(".click").remove();
+                });
+                $(this).mouseleave(function () {
+                    $(this).find(".click").remove();
+                });
             });
-            $(this).mouseup(async function () {
-                $(this).find(".click").remove();
-            });
-            $(this).mouseleave(function () {
-                $(this).find(".click").remove();
-            });
-        });
 
-        $(".choices").css("width", `${770 / choiceCount}px`);
-        $(".choices").css("margin-right",  `${62 / choiceCount}px`);
-        $(".choices").last().css("margin-right",  0);
+            $(".choices").css("width", `${770 / choiceCount}px`);
+            $(".choices").css("margin-right",  `${62 / choiceCount}px`);
+            $(".choices").last().css("margin-right",  0);
+        }
 
         view.fitText("choices");
     },
     clear_choices: async () => {
         await timeout(1000);
+
         $(".choices").each (function() {
             $(this).remove();
         });
@@ -148,17 +175,18 @@ const view = {
             }
         }
 
-        view.current_video = document.getElementById(`v_${current_video}`);
+        view.current_video  = document.getElementById(`v_${current_video}`);
+        view.loopVideo      = document.getElementById(`v_l_${current_video}`);
     },
     show_question : () => {
         $(".blackout").css("opacity", "0");
         $(".controls").hide();
-        $(".choices_block").removeClass("hide");
-        $(".choices_block").addClass("show");
+        $("#choices").removeClass(stickyChoices ? "stickyHide" : "hide");
+        $("#choices").addClass(   stickyChoices ? "stickyShow" : "show");
     },
     hide_question: () => {
-        $(".choices_block").removeClass("show");
-        $(".choices_block").addClass("hide");
+        $("#choices").removeClass(stickyChoices ? "stickyShow" : "show");
+        $("#choices").addClass(   stickyChoices ? "stickyHide" : "hide");
     },
     fitText: (name) => {
 		$(`.${name} p`).each(function (i) {
