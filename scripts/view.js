@@ -123,9 +123,9 @@ const view = {
         }
     },
     update_choices : async (choices) => {
-
         if (!stickyChoices) {
             let choiceCount = 0;
+
             $(".choices").each(function(index) {
                 choiceCount++;
                 $(this).children("p").text(choices[index].name);
@@ -141,8 +141,8 @@ const view = {
                 });
             });
 
-            $(".choices").css("width", `${770 / choiceCount}px`);
-            $(".choices").css("margin-right",  `${62 / choiceCount}px`);
+            $(".choices").css("width",          `${770 / choiceCount}px`);
+            $(".choices").css("margin-right",   `${62  / choiceCount}px`);
             $(".choices").last().css("margin-right",  0);
         }
 

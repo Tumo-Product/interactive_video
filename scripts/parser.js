@@ -9,6 +9,7 @@ const parser = {
 }
 
 const vids = {
+    addAllVideos: true,
     segments: [
         {
             id      : "0",
@@ -17,17 +18,17 @@ const vids = {
             choices : [
                 {
                     name : "KapuytKapuytKapuytKapuytKapuytKapuyt Kapuyt Kapuyt Kapuyt Kapuyt Kapuyt KapuytKapuytKapuyt",
+                    ref  : "00",
                     pos  : {
                         x: 100, y: 100
-                    },
-                    ref  : "00"
+                    }
                 },
                 {
                     name : "Karmir",
+                    ref  : "01",
                     pos  : {
                         x: 300, y: 300
-                    },
-                    ref  : "01"
+                    }
                 }
             ]
         },

@@ -1,7 +1,6 @@
 let videos;
 let tree            = [];
 let tree_keys       = [];
-let addAllVideos    = true;
 let current_video   = '0';
 let stickyChoices   = false;
 
@@ -18,8 +17,7 @@ const onPageLoad = async () => {
         tree_keys[i] = videos.segments[i].id;
     }
 
-
-    if (!addAllVideos) {
+    if (!videos.addAllVideos) {
         view.addVideo(current_video, tree[current_video].src);
     }
 
@@ -54,15 +52,15 @@ const resetStyles = async () => {
 
 const addVideos = async () => {
     let addedVideos     = [];
+    let choices         = tree[current_video].choices;
     
-    if (addAllVideos) {
+    if (videos.addAllVideos) {
         for (branch in tree) {
             view.addVideo(tree[branch].id, tree[branch].src);
             view.addVideo(`l_${tree[branch].id}`, tree[branch].loopSrc);
         }
-    } else 
-    {
-        view.addVideo(`l_${current_video}`, tree[current_video].loopSrc)
+    } else {
+        view.addVideo(`l_${current_video}`, tree[current_video].loopSrc);
 
         for (let i = 0; i < choices.length; i++) {
             if (addedVideos.includes(choices[i].ref)) {
@@ -89,7 +87,7 @@ const next_video = async (index) => {
         return;
     }
 
-    if (!addAllVideos) {
+    if (!videos.addAllVideos) {
         view.next_video();
         addVideos();
     } else {
@@ -101,11 +99,14 @@ const next_video = async (index) => {
         }
 
         view.next_video(remove);
+
+        await resetStyles();
+        addChoices();
+        await view.update_choices(tree[current_video].choices);
     }
 
-    await resetStyles();
-    addChoices();
-    await view.update_choices(tree[current_video].choices);
+    view.current_video  = document.getElementById(`v_${current_video}`);
+    view.loopVideo      = document.getElementById(`v_l_${current_video}`);
     
     player.controls.play();
 }
