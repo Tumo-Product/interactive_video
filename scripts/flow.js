@@ -90,6 +90,10 @@ const next_video = async (index) => {
     if (!videos.addAllVideos) {
         view.next_video();
         addVideos();
+
+        view.current_video  = document.getElementById(`v_${current_video}`);
+        view.loopVideo      = document.getElementById(`v_l_${current_video}`);
+        player.controls.play();
     } else {
         let remove = [];
         remove.push(old_video);
@@ -100,15 +104,15 @@ const next_video = async (index) => {
 
         view.next_video(remove);
 
+        view.current_video  = document.getElementById(`v_${current_video}`);
+        view.loopVideo      = document.getElementById(`v_l_${current_video}`);
+        player.controls.play();
         await resetStyles();
         addChoices();
         await view.update_choices(tree[current_video].choices);
     }
 
-    view.current_video  = document.getElementById(`v_${current_video}`);
-    view.loopVideo      = document.getElementById(`v_l_${current_video}`);
     
-    player.controls.play();
 }
 
 $(onPageLoad)

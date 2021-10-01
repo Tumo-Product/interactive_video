@@ -13,92 +13,184 @@ const vids = {
     segments: [
         {
             id      : "0",
-            src     : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-            loopSrc : "http://techslides.com/demos/sample-videos/small.mp4",
+            src     : "videos/Q1.mp4",
+            loopSrc : "videos/Loop Q1.mp4",
             choices : [
                 {
-                    name : "KapuytKapuytKapuytKapuytKapuytKapuyt Kapuyt Kapuyt Kapuyt Kapuyt Kapuyt KapuytKapuytKapuyt",
+                    name : "Answer 1",
                     ref  : "00",
-                    pos  : {
-                        x: 100, y: 100
-                    }
                 },
                 {
-                    name : "Karmir",
+                    name : "Answer 2",
                     ref  : "01",
-                    pos  : {
-                        x: 300, y: 300
-                    }
                 }
             ]
         },
+
         {
             id      : "00",
-            src     : "https://cdn.videvo.net/videvo_files/video/premium/getty_56/small_watermarked/istock-1003710026_preview.webm",
-            loopSrc : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            src     : "videos/A1 + Q2.mp4",
+            loopSrc : "videos/Loop Q2.mp4",
             choices : [
                 {
-                    name : "optionoptionoption option optionoptionoption option 01",
+                    name : "Answer 1",
                     ref  : "000"
                 },
                 {
-                    name : "option 02",
-                    ref  : "000"
-                },
-                {
-                    name : "option 03",
-                    ref  : "000"
-                },
-                {
-                    name : "option 04",
-                    ref  : "000"
-                },
+                    name : "Answer2",
+                    ref  : "001"
+                }
             ]
         },
         {
             id      : "01",
-            src     : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
-            loopSrc : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            src     : "videos/A2 + Q2.mp4",
+            loopSrc : "videos/Loop Q2.mp4",
             choices : [
                 {
-                    name : "option 01",
-                    ref  : "010"
+                    name : "Answer 1",
+                    ref  : "000"
                 },
                 {
-                    name : "option 02",
-                    ref  : "011"
+                    name : "Answer 2",
+                    ref  : "001"
                 }
             ]
         },
+
         {
             id      : "000",
-            src     : "https://cdn.videvo.net/videvo_files/video/free/2016-06/small_watermarked/160323_15_PokerTracking1_1080p_preview.webm",
-            loopSrc : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            src     : "videos/Q2A1 + Q3.mp4",
+            loopSrc : "videos/Loop Q3.mp4",
             choices : [
                 {
                     name : "option 01",
-                    ref  : "010"
+                    ref  : "0000"
                 },
                 {
                     name : "option 02",
-                    ref  : "010"
+                    ref  : "0001"
                 }
             ]
         },
         {
-            id      : "010",
-            src     : "https://cdn.videvo.net/videvo_files/video/premium/getty_56/small_watermarked/istock-1003710026_preview.webm",
-            loopSrc : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            id      : "001",
+            src     : "videos/Q2A2 + Q3.mp4",
+            loopSrc : "videos/Loop Q3.mp4",
             choices : [
                 {
                     name : "option 01",
-                    ref  : "010"
+                    ref  : "0000"
                 },
                 {
                     name : "option 02",
-                    ref  : "011"
+                    ref  : "0001"
                 }
             ]
+        },
+
+        {
+            id      : "0000",
+            src     : "videos/Q3A1 + Q4.mp4",
+            loopSrc : "videos/Loop Q4.mp4",
+            choices : [
+                {
+                    name : "option 01",
+                    ref  : "00000"
+                },
+                {
+                    name : "option 02",
+                    ref  : "00001"
+                }
+            ]
+        },
+        {
+            id      : "0001",
+            src     : "videos/Q3A2 + Q4.mp4",
+            loopSrc : "videos/Loop Q4.mp4",
+            choices : [
+                {
+                    name : "option 01",
+                    ref  : "00000"
+                },
+                {
+                    name : "option 02",
+                    ref  : "00001"
+                }
+            ]
+        },
+
+        {
+            id      : "00000",
+            src     : "videos/Q4A1 + Q5.mp4",
+            loopSrc : "videos/Loop Q5.mp4",
+            choices : [
+                {
+                    name : "option 01",
+                    ref  : "000000"
+                },
+                {
+                    name : "option 02",
+                    ref  : "000001"
+                }
+            ]
+        },
+        {
+            id      : "00001",
+            src     : "videos/Q4A2 + Q5.mp4",
+            loopSrc : "videos/Loop Q5.mp4",
+            choices : [
+                {
+                    name : "option 01",
+                    ref  : "000000"
+                },
+                {
+                    name : "option 02",
+                    ref  : "000001"
+                }
+            ]
+        },
+
+        {
+            id      : "000000",
+            src     : "videos/Q5A1 + Q6.mp4",
+            loopSrc : "videos/Loop Q6.mp4",
+            choices : [
+                {
+                    name : "option 01",
+                    ref  : "0000000"
+                },
+                {
+                    name : "option 02",
+                    ref  : "0000001"
+                }
+            ]
+        },
+        {
+            id      : "000001",
+            src     : "videos/Q5A2 + Q6.mp4",
+            loopSrc : "videos/Loop Q6.mp4",
+            choices : [
+                {
+                    name : "option 01",
+                    ref  : "0000000"
+                },
+                {
+                    name : "option 02",
+                    ref  : "0000001"
+                }
+            ]
+        },
+
+        {
+            id      : "0000000",
+            src     : "videos/Q6A1 + VO.mp4",
+            choices : []
+        },
+        {
+            id      : "0000001",
+            src     : "videos/Q6A2 + VO.mp4",
+            choices : []
         },
     ]
 }

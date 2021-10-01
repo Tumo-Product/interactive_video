@@ -1,4 +1,5 @@
 const player = {
+    canRewind: true,
     controls : {
         play : (video) => {
             if (video == undefined) {
@@ -21,14 +22,18 @@ const player = {
         },
     
         rewind_video : (time) => {
-            let currentVideo = document.getElementById(`v_${current_video}`);
+            if (player.canRewind) {
+                player.canRewind = false;
+                let currentVideo = document.getElementById(`v_${current_video}`);
+                if (currentVideo.currentTime == currentVideo.duration && time < 0){
+                    player.controls.play();
+                }
+                currentVideo.currentTime += time;
 
-            if (currentVideo.currentTime == currentVideo.duration && time < 0)
-            {
-                player.controls.play();
-            }
-
-            currentVideo.currentTime += time;
+                setTimeout(() => {
+                    player.canRewind = true;
+                }, 100);
+            }         
         }
     }
 }
