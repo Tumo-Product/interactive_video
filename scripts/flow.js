@@ -1,5 +1,5 @@
-let videos;
 let tree            = [];
+let videos;
 let tree_keys       = [];
 let current_video   = '0';
 let stickyChoices   = false;
@@ -8,7 +8,7 @@ const timeout = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const onPageLoad = async () => {
+const onPageLoad = async (loaded) => {
     videos = await parser.dataFetch();
     // videos = videos.data.data;
 
@@ -22,10 +22,44 @@ const onPageLoad = async () => {
     }
 
     await addVideos();
-    await timeout(2000);
+    loadVideos();
 
     view.onStart();
+}
+
+const loadVideos = () => {
+    let videoElements = $("video");
+    let videosLoaded = 0;
+    
+    videoElements.each(function(i) {
+        let video = $(this).get(0);
+        video.load();
+        
+        video.addEventListener('loadeddata', (e) => {
+            if(video.readyState >= 3) {
+                video.removeEventListener("loadeddata", (e) => {}, true);
+                videosLoaded++;
+                if (videosLoaded == videoElements.length) {
+                    view.toggleLoader();
+                }
+            }
+         });
+    });
+}
+
+const reload = () => {
     view.toggleLoader();
+    tree            = [];
+    videos          = undefined;
+    tree_keys       = [];
+    current_video   = '0';
+    stickyChoices   = false;
+
+    $(".video_block").remove();
+    $("#choices").empty();
+    onPageLoad();
+    view.change_styles(1);
+    view.hide_question();
 }
 
 const addChoices = async () => {
@@ -58,6 +92,7 @@ const addVideos = async () => {
     if (videos.addAllVideos) {
         for (branch in tree) {
             view.addVideo(tree[branch].id, tree[branch].src);
+            if (tree[branch].loopSrc === undefined) continue;
             view.addVideo(`l_${tree[branch].id}`, tree[branch].loopSrc);
         }
     } else {
@@ -83,6 +118,7 @@ const next_video = async (index) => {
     let old_video = current_video;
     current_video = tree[current_video].choices[index].ref;
     $(".controls").css("display", "flex");
+    $("#front img").show();
     
     if (tree[current_video] === undefined) {
         return;
@@ -111,9 +147,7 @@ const next_video = async (index) => {
         await resetStyles();
         addChoices();
         await view.update_choices(tree[current_video].choices);
-    }
-
-    
+    }    
 }
 
 $(onPageLoad)

@@ -56,6 +56,7 @@ const view = {
         }
     },
     loop: (id) => {
+        if (view.loopVideo === null) return;
         let duration        = view.loopVideo.duration;
         let currentTime     = view.loopVideo.currentTime;
 
@@ -64,11 +65,12 @@ const view = {
         }
     },
     update: () => {
+        if (view.current_video.duration === undefined || view.current_video.duration === null) return;
         let duration        = view.current_video.duration;
         let currentTime     = view.current_video.currentTime;
 
         if (currentTime >= duration) {
-            if (document.getElementById(`v_l_${current_video}`) !== undefined) {
+            if (document.getElementById(`v_l_${current_video}`) !== null) {
                 view.show_question();
 
                 $(`#${current_video}`).remove();
@@ -183,12 +185,14 @@ const view = {
         view.loopVideo      = document.getElementById(`v_l_${current_video}`);
     },
     show_question : () => {
-        $(".blackout").css("opacity", "0");
         $(".controls").hide();
+        $(".blackout").css("opacity", "0");
         $("#choices").removeClass(stickyChoices ? "stickyHide" : "hide");
         $("#choices").addClass(   stickyChoices ? "stickyShow" : "show");
     },
     hide_question: () => {
+        $(".controls").show();
+        $(".blackout").css("opacity", "0.4");
         $("#choices").removeClass(stickyChoices ? "stickyShow" : "show");
         $("#choices").addClass(   stickyChoices ? "stickyHide" : "hide");
     },
