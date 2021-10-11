@@ -22,6 +22,7 @@ const onPageLoad = async () => {
     }
 
     await addVideos();
+    await timeout(2000);
 
     view.onStart();
     view.toggleLoader();

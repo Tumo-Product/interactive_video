@@ -68,23 +68,27 @@ const view = {
         let currentTime     = view.current_video.currentTime;
 
         if (currentTime >= duration) {
-            view.show_question();
-            $("pause").hide();
+            if (document.getElementById(`v_l_${current_video}`) !== undefined) {
+                view.show_question();
 
-            $(`#${current_video}`).remove();
-            player.controls.play(`v_l_${current_video}`);
+                $(`#${current_video}`).remove();
+                player.controls.play(`v_l_${current_video}`);
+            } else {
+                $(".controls").hide();
+                $(".blackout").css("opacity", 1);
+            }
         }
 
-        if (currentTime > 5) {
+        if (currentTime > 10) {
             $("#back img").show();
         }
-        else if (currentTime < 5) {
+        else if (currentTime < 10) {
             $("#back img").hide();
         }
-        if (currentTime < duration - 5) {
+        if (currentTime < duration - 10) {
             $("#front img").show();
         }
-        else if (currentTime > duration - 5) {
+        else if (currentTime > duration - 10) {
             $("#front img").hide();
         }
     },
