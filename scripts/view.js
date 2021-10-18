@@ -68,16 +68,13 @@ const view = {
         if (view.current_video.duration === undefined || view.current_video.duration === null) return;
         let duration        = view.current_video.duration;
         let currentTime     = view.current_video.currentTime;
-
-        if (currentTime >= duration) {
-            if (document.getElementById(`v_l_${current_video}`) !== null) {
+        
+        if (currentTime >= duration - 1) {
+            $(`#v_${current_video}`).css("filter", "blur(5px)");
+            if (!playback) {
                 view.show_question();
-
-                $(`#${current_video}`).remove();
-                player.controls.play(`v_l_${current_video}`);
             } else {
-                $(".controls").hide();
-                $(".blackout").css("opacity", 1);
+                next_video(choices[choiceIndex]);
             }
         }
 

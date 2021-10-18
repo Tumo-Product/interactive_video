@@ -3,6 +3,9 @@ let videos;
 let tree_keys       = [];
 let current_video   = '0';
 let stickyChoices   = false;
+let choices         = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+let choiceIndex     = 0;
+let playback        = false;
 
 const timeout = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -25,6 +28,7 @@ const onPageLoad = async (loaded) => {
     loadVideos();
 
     view.onStart();
+    await timeout(2000); view.toggleLoader();
 }
 
 const loadVideos = () => {
@@ -115,6 +119,17 @@ const addVideos = async () => {
 }
 
 const next_video = async (index) => {
+    $(`#${current_video}`).css("opacity", 0);
+    setTimeout(() => {
+        $(`#v_${old_video}`).css("filter", "blur(0px)");
+    }, 1000);
+
+    if (!playback) {
+        choices.push(index);
+    } else {
+        choiceIndex++;
+    }
+    
     let old_video = current_video;
     current_video = tree[current_video].choices[index].ref;
     $(".controls").css("display", "flex");
