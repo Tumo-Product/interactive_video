@@ -78,17 +78,22 @@ const view = {
             }
         }
 
-        if (currentTime > 10) {
+        if (!playback) {
+            if (currentTime > 10) {
+                $("#back img").show();
+            }
+            else if (currentTime < 10) {
+                $("#back img").hide();
+            }
+            if (currentTime < duration - 10) {
+                $("#front img").show();
+            }
+            else if (currentTime > duration - 10) {
+                $("#front img").hide();
+            }
+        } else {
             $("#back img").show();
-        }
-        else if (currentTime < 10) {
-            $("#back img").hide();
-        }
-        if (currentTime < duration - 10) {
             $("#front img").show();
-        }
-        else if (currentTime > duration - 10) {
-            $("#front img").hide();
         }
     },
     changeChoiceStyle : async (sticky) => {

@@ -3,7 +3,7 @@ let videos;
 let tree_keys       = [];
 let current_video   = '0';
 let stickyChoices   = false;
-let choices         = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+let choices         = [];
 let choiceIndex     = 0;
 let playback        = false;
 
@@ -25,7 +25,7 @@ const onPageLoad = async (loaded) => {
     }
 
     await addVideos();
-    loadVideos();
+    // loadVideos();
 
     view.onStart();
     await timeout(2000); view.toggleLoader();
@@ -49,21 +49,6 @@ const loadVideos = () => {
             }
          });
     });
-}
-
-const reload = () => {
-    view.toggleLoader();
-    tree            = [];
-    videos          = undefined;
-    tree_keys       = [];
-    current_video   = '0';
-    stickyChoices   = false;
-
-    $(".video_block").remove();
-    $("#choices").empty();
-    onPageLoad();
-    view.change_styles(1);
-    view.hide_question();
 }
 
 const addChoices = async () => {
@@ -131,13 +116,23 @@ const next_video = async (index) => {
     }
     
     let old_video = current_video;
+    if (tree[current_video].choices[index].ref === undefined)  {
+        $(".controls").hide();
+        if (index === 0) {
+            playback = true;
+            current_video = "0";
+            view.current_video  = document.getElementById(`v_${current_video}`);
+            $(".video_block").css("opacity", 1);
+            view.hide_question();
+            player.controls.play();
+        } else {
+
+        }
+        return;
+    }
     current_video = tree[current_video].choices[index].ref;
     $(".controls").css("display", "flex");
     $("#front img").show();
-    
-    if (tree[current_video] === undefined) {
-        return;
-    }
 
     if (!videos.addAllVideos) {
         view.next_video();
