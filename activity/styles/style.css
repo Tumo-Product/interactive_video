@@ -22,8 +22,9 @@
 }
 
 body {
+    margin-left: 6px;
     overflow: hidden;
-    background-color: black;
+    background-color: #fafafa;
 }
 
 audio {
