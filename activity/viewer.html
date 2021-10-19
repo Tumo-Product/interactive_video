@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" id="loadingScreen">
+		<div id="loader">
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+		</div>
+	</div>
+
+    <div id="choices" class="choices_block hide"></div>
+    <div class="blackout"></div>
+    <div class="controls">
+        <div class="control" id="back"  style="z-index: 2;">
+            <img onclick="player.controls.rewind_video(-10)" src="images/move_back.svg" alt="">
+        </div>
+        <div class="control" id="play" onclick="player.controls.play()" style="z-index: 2;">
+            <img src="images/play.svg" alt="">
+        </div>
+        <div class="control" id="pause" onclick="player.controls.pause()" style="z-index: 1;">
+            <img src="images/pause.svg" alt="">
+        </div>
+        <div class="control" id="front"  style="z-index: 1;">
+            <img onclick="player.controls.rewind_video(10)" src="images/move_forward.svg" alt="">
+        </div>
+    </div>
+
+    <div class="recorder">
+        <img  id="background" src="images/reviewScreen.png" alt="">
+        <div class="progressContainer offscreen">
+            <p class="start">0s</p>
+            <div id="progressBar">
+                <div class="progress"></div>
+            </div>
+            <p class="end">60s</p>
+        </div>
+
+        <canvas class="visualizer"></canvas>
+        <img class="controlBtn" src="images/button_play.png" alt="">
+        <img class="delete" src="images/button_delete.png" alt="">
+        <img class="send" src="images/button_send.png" alt="">
+        <img class="stop" src="images/button_stop.png" alt="">
+        <img class="pause" src="images/button_pause.png" alt="">
+        <img class="record" src="images/button_rec.png" alt="">
+    </div>
+
+    <audio id="audioElem" src="" controls></audio>
+
+    <script src="scripts/config.js"></script>
+    <script src="scripts/parser.js"></script>
+    <script src="scripts/recorder.js"></script>
+    <script src="scripts/view.js"></script>
+    <script src="scripts/flow.js"></script>
+    <script src="scripts/player.js"></script>
+</body>
+</html>

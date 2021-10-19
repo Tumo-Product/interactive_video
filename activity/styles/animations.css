@@ -1,0 +1,38 @@
+@keyframes flash {
+    0% {
+        opacity: 0.7;
+        filter: drop-shadow(0px 0px 0px rgba(255, 255, 255, 0.459)) blur(0.5px) contrast(1.45);
+    }
+
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.459)) blur(0.5px) contrast(1.45);
+    }
+
+    100% {
+        opacity: 0.7;
+        filter: drop-shadow(0px 0px 0px rgba(255, 255, 255, 0.459)) blur(0.5px) contrast(1.45);
+    }
+}
+
+.flash {
+    animation: flash 1s infinite;
+}
+
+@keyframes activeAnimation {
+    0% {
+        transform: scale(0.9);
+    }
+
+    40% {
+        transform: scale(0.9);
+    }
+
+    70% {
+        transform: scale(1.05);
+    }
+
+    0% {
+        transform: scale(0.9);
+    }
+}
