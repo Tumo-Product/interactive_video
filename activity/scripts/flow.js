@@ -8,6 +8,12 @@ let choices         = [];
 let choiceIndex     = 0;
 let playback        = false;
 
+window.parent.postMessage({
+    application: 'activity-manager',
+    message: 'set-iframe-height',
+    data: { iframeHeight: 500 }
+}, '*');
+
 const timeout = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
