@@ -87,6 +87,8 @@ const startRecording = () => {
     $(".pause").show();
     $(".progressContainer").removeClass("offscreen");
     $(".record").hide();
+    $("#background").css('opacity', 0);
+    $("#background").attr("src", "images/reviewScreen.png")
 
     if (navigator.mediaDevices.getUserMedia) {
         console.log('getUserMedia supported.');

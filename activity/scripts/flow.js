@@ -137,6 +137,7 @@ const next_video = async (index) => {
         } else {
             $(".controls").hide();
             $(".recorder").css({"opacity": 1, "pointer-events": "all"});
+            $("#background").css("opacity", 1);
         }
         return;
     }

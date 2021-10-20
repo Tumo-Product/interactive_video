@@ -64,7 +64,7 @@ const vids = {
                     ref  : "0000"
                 },
                 {
-                    name : "Acheter des nouveaux habits",
+                    name : "Achète de nouveaux habits",
                     ref  : "0001"
                 }
             ]
@@ -78,7 +78,7 @@ const vids = {
                     ref  : "0000"
                 },
                 {
-                    name : "Acheter des nouveaux habits",
+                    name : "Achète de nouveaux habits",
                     ref  : "0001"
                 }
             ]
@@ -118,11 +118,11 @@ const vids = {
             src     : "videos/Q4A1 + Q5.mp4",
             choices : [
                 {
-                    name : "Publier sur Instagram",
+                    name : "Publie sur Instagram",
                     ref  : "000000"
                 },
                 {
-                    name : "Regarder votre environnement",
+                    name : "Regarde ton environnement",
                     ref  : "000001"
                 }
             ]
@@ -132,11 +132,11 @@ const vids = {
             src     : "videos/Q4A2 + Q5.mp4",
             choices : [
                 {
-                    name : "Publier sur Instagram",
+                    name : "Publie sur Instagram",
                     ref  : "000000"
                 },
                 {
-                    name : "Regarder votre environnement",
+                    name : "Regarde ton environnement",
                     ref  : "000001"
                 }
             ]
@@ -147,11 +147,11 @@ const vids = {
             src     : "videos/Q5A1 + Q6.mp4",
             choices : [
                 {
-                    name : "Utiliser le ventilateur",
+                    name : "Utilise le ventilateur",
                     ref  : "0000000"
                 },
                 {
-                    name : "Ignorer la chaleur",
+                    name : "Ignore la chaleur",
                     ref  : "0000001"
                 }
             ]
@@ -161,11 +161,11 @@ const vids = {
             src     : "videos/Q5A2 + Q6.mp4",
             choices : [
                 {
-                    name : "Utiliser le ventilateur",
+                    name : "Utilise le ventilateur",
                     ref  : "0000000"
                 },
                 {
-                    name : "Ignorer la chaleur",
+                    name : "Ignore la chaleur ",
                     ref  : "0000001"
                 }
             ]
@@ -176,10 +176,10 @@ const vids = {
             src     : "videos/Q6A1 + VO.mp4",
             choices : [
                 {
-                    name : "Replay",
+                    name : "Regarde tes choix",
                 },
                 {
-                    name : "Go to recorder.",
+                    name : "Enregistre ta réponse",
                 }
             ]
         },
@@ -188,10 +188,10 @@ const vids = {
             src     : "videos/Q6A2 + VO.mp4",
             choices : [
                 {
-                    name : "Replay",
+                    name : "Regarde tes choix",
                 },
                 {
-                    name : "Go to recorder.",
+                    name : "Enregistre ta réponse",
                 }
             ]
         },
