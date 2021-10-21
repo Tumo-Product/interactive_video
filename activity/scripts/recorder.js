@@ -65,14 +65,21 @@ $(async () => {
         audio.ontimeupdate = () => {
             $(".controls").hide();
             if (audio.currentTime >= audio.duration) {
-                $("#v_finalVideo").css("filter", "blur(5px)");
-                player.controls.pause("v_finalVideo");
+                $("#finalVideo").remove();
+
+                let thankYou = document.getElementById("v_thankYou");
+                player.controls.play("v_thankYou");
+                thankYou.ontimeupdate = () => {
+                    if (thankYou.currentTime >= thankYou.duration) {
+                        $(`#v_thankYou`).css("filter", "blur(5px)");
+                    }
+                };
             }
         }
         $(".recorder").css({ "opacity": 0, "pointer-events": "none" });
         $(".video_block").css("transition", "0s"); await timeout(10);
         $(".video_block").css("opacity", 0);
-        $("#finalVideo").css("opacity", 1);
+        $("#finalVideo").css("opacity", 1); $("#thankYou").css("opacity", 1);
 
         window.parent.postMessage({
             application: 'activity-manager',

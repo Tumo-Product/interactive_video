@@ -184,7 +184,7 @@ button {
     display: flex;
     justify-content: center;
     position: relative;
-    background-color: black;
+    /* background-color: black; */
     position: absolute;
     top: 0;
     display: flex;

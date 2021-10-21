@@ -198,6 +198,10 @@ const vids = {
         {
             id      : "finalVideo",
             src     : "videos/Final Loop.mp4",
+        },
+        {
+            id      : "thankYou",
+            src     : "videos/Thank You.mp4",
         }
     ]
 }
