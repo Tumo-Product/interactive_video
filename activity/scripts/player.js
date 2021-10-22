@@ -2,6 +2,7 @@ const player = {
     canRewind: true,
     controls : {
         play : (video) => {
+            document.getElementById("music").play();
             if (video == undefined) {
                 document.getElementById(`v_${current_video}`).play();
             } else {
@@ -12,6 +13,7 @@ const player = {
         },
     
         pause : (video) => {
+            document.getElementById("music").pause();
             if (video == undefined) {
                 document.getElementById(`v_${current_video}`).pause();
             } else {
@@ -22,6 +24,7 @@ const player = {
         },
     
         rewind_video : (time) => {
+            document.getElementById("music").currentTime += time;
             if (player.canRewind) {
                 player.canRewind = false;
                 let currentVideo = document.getElementById(`v_${current_video}`);

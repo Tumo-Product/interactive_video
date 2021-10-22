@@ -23,5 +23,5 @@ window.addEventListener("message", event => {
 window.parent.postMessage({
     application: 'activity-manager',
     message: 'set-iframe-height',
-    data: { iframeHeight: 100 }
+    data: { iframeHeight: 70 }
 }, '*');

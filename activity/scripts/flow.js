@@ -19,6 +19,7 @@ const timeout = (ms) => {
 }
 
 const onPageLoad = async (loaded) => {
+    document.getElementById("music").volume = 0.1;
     videos = await parser.dataFetch();
     // videos = videos.data.data;
 
@@ -138,6 +139,7 @@ const next_video = async (index) => {
             $(".controls").hide();
             $(".recorder").css({"opacity": 1, "pointer-events": "all"});
             $("#background").css("opacity", 1);
+            document.getElementById("music").pause();
         }
         return;
     }
