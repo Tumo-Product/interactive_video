@@ -54,6 +54,7 @@ $(async () => {
     $(".send").click(async () => {
         audio.pause();
         audio.currentTime = 0;
+        $("#choices").remove();
         $("#background").css("opacity", 0).hide();
         $(".recorder img").css({"opacity": 0});
         setTimeout(() => {
