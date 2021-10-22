@@ -19,7 +19,7 @@ const timeout = (ms) => {
 }
 
 const onPageLoad = async (loaded) => {
-    document.getElementById("music").volume = 0.1;
+    document.getElementById("music").volume = 0.07;
     videos = await parser.dataFetch();
     // videos = videos.data.data;
 
