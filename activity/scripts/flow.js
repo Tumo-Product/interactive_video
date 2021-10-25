@@ -3,7 +3,6 @@ let videos;
 let tree_keys       = [];
 let current_video   = '0';
 let stickyChoices   = false;
-// let choices         = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ];
 let choices         = [];
 let choiceIndex     = 0;
 let playback        = false;
@@ -19,7 +18,7 @@ const timeout = (ms) => {
 }
 
 const onPageLoad = async (loaded) => {
-    document.getElementById("music").volume = 0.07;
+    document.getElementById("music").volume = 0.05;
     videos = await parser.dataFetch();
     // videos = videos.data.data;
 
