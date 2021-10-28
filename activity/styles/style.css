@@ -119,8 +119,9 @@ button {
     filter: drop-shadow(0px 0px 12px green) blur(0.5px) contrast(1.45);
 }
 
-.record:active, .stop:active, .pause:active {
-    animation: activeAnimation 0.2s linear;
+.record:active, .stop:active, .pause:active, .delete:active, .controlBtn:active, .send:active {
+    transform: scale(0.9);
+    /* animation: activeAnimation 0.2s linear; */
 }
 
 #progressBar {
