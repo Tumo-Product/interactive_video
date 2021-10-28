@@ -7,6 +7,7 @@ const mainSection = document.querySelector('.main-controls');
 let timer = 0;
 let rec, str;
 let data;
+let played = false;
 
 record.onclick = function() {
     startRecording();
@@ -20,14 +21,22 @@ let paused = false;
 let audio = document.getElementById("audioElem");
 
 audio.ontimeupdate = (event) => {
-    if (audio.currentTime >= audio.duration)
+    if (audio.currentTime >= audio.duration) {
         document.querySelector(".controlBtn").classList.remove("flash");
+        played = false;
+    }
 }
 
 document.querySelector(".controlBtn").onclick = () => {
-    audio.currentTime = 0;
-    audio.play();
-    document.querySelector(".controlBtn").classList.add("flash");
+    if (!played) {
+        audio.play();
+        document.querySelector(".controlBtn").classList.add("flash");
+    } else {
+        audio.pause();
+        document.querySelector(".controlBtn").classList.remove("flash");
+    }
+    
+    played = !played;
 }
 
 $(async () => {
@@ -182,7 +191,6 @@ function visualize(stream) {
     }
 
     const source = audioCtx.createMediaStreamSource(stream);
-
     const analyser = audioCtx.createAnalyser();
     analyser.fftSize = 2048;
     const bufferLength = analyser.frequencyBinCount;
@@ -204,6 +212,7 @@ function visualize(stream) {
 
             timer++;
             $(".progress").css("width", `${timer / 3600 * 100}%`);
+            $(".start").text((timer / 60).toFixed(1) + "s");
             if (timer >= 3600) {
                 rec.stop();
                 paused = true;

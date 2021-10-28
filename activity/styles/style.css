@@ -161,6 +161,8 @@ button {
     margin-right: 10px;
     font-variant: lining-nums;
     color: white;
+    position: absolute;
+    margin-right: 619.9px;
 }
 
 .end {
