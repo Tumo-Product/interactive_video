@@ -60,7 +60,7 @@ const vids = {
             src     : "videos/Q2A1 + Q3.mp4",
             choices : [
                 {
-                    name : "Échangeons-nous",
+                    name : "Échangeons nos vêtements",
                     ref  : "0000"
                 },
                 {
