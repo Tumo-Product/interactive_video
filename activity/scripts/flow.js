@@ -36,7 +36,7 @@ const onPageLoad = async (loaded) => {
     loadVideos();
 
     view.onStart();
-    await timeout(2000); view.toggleLoader();
+    await timeout(2000); $("#loadingScreen").hide()
 }
 
 const loadVideos = () => {
@@ -53,7 +53,7 @@ const loadVideos = () => {
                 videosLoaded++;
                 console.log("loaded");
                 if (videosLoaded == videoElements.length) {
-                    view.toggleLoader();
+                    $("#loadingScreen").hide()
                 }
             }
          });
