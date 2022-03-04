@@ -20,7 +20,7 @@ const timeout = (ms) => {
 const onPageLoad = async (loaded) => {
     document.getElementById("music").volume = 0.05;
     videos = await parser.dataFetch();
-    // videos = videos.data.data;
+    videos = videos.data.data;
 
     for (let i = 0; i < videos.segments.length; i++) {
         tree[videos.segments[i].id] = { id: videos.segments[i].id, src : videos.segments[i].src, choices : videos.segments[i].choices, loopSrc: videos.segments[i].loopSrc };
@@ -33,7 +33,7 @@ const onPageLoad = async (loaded) => {
 
     await addVideos();
     $(`#v_finalVideo`).attr("loop", "loop");
-    // loadVideos();
+    loadVideos();
 
     view.onStart();
     await timeout(2000); view.toggleLoader();
@@ -51,6 +51,7 @@ const loadVideos = () => {
             if(video.readyState >= 3) {
                 video.removeEventListener("loadeddata", (e) => {}, true);
                 videosLoaded++;
+                console.log("loaded");
                 if (videosLoaded == videoElements.length) {
                     view.toggleLoader();
                 }
