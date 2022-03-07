@@ -36,7 +36,6 @@ const onPageLoad = async (loaded) => {
     loadVideos();
 
     view.onStart();
-    await timeout(2000); $("#loadingScreen").hide()
 }
 
 const loadVideos = () => {
@@ -47,12 +46,13 @@ const loadVideos = () => {
         let video = $(this).get(0);
         video.load();
         
-        video.addEventListener('loadeddata', (e) => {
+        video.addEventListener('loadeddata', async (e) => {
             if(video.readyState >= 3) {
                 video.removeEventListener("loadeddata", (e) => {}, true);
                 videosLoaded++;
                 console.log("loaded");
                 if (videosLoaded == videoElements.length) {
+                    await timeout(2000);
                     $("#loadingScreen").hide()
                 }
             }
