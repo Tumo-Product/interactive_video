@@ -22,6 +22,8 @@ const onPageLoad = async (loaded) => {
     videos = await parser.dataFetch();
     videos = videos.data.data;
 
+    $("#music").attr("src", videos.music);
+
     for (let i = 0; i < videos.segments.length; i++) {
         tree[videos.segments[i].id] = { id: videos.segments[i].id, src : videos.segments[i].src, choices : videos.segments[i].choices, loopSrc: videos.segments[i].loopSrc };
         tree_keys[i] = videos.segments[i].id;
