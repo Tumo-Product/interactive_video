@@ -337,6 +337,7 @@ button {
 }
 
 .choices_block .choices p {
+    text-align: center;
     color: #436980;
     font-size: 23px;
     height: 50px;
