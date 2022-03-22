@@ -6,6 +6,7 @@ let stickyChoices   = false;
 let choices         = [];
 let choiceIndex     = 0;
 let playback        = false;
+let firstShirt;
 
 window.parent.postMessage({
     application: 'activity-manager',
@@ -21,6 +22,7 @@ const onPageLoad = async (loaded) => {
     document.getElementById("music").volume = 0.05;
     videos = await parser.dataFetch();
     videos = videos.data.data;
+    firstShirt = videos.firstShirt;
 
     $("#music").attr("src", videos.music);
 
@@ -115,6 +117,17 @@ const addVideos = async () => {
 }
 
 const next_video = async (index) => {
+    if (tree[current_video].choices[index].ref === firstShirt) {
+        let sources = ["loopIntro", "loopVideo", "thankYou"];
+
+        for (let src of sources) {
+            let sourceElement = $(`#v_${src} source`);
+            let srcString = sourceElement.attr("src");
+            srcString = srcString.replace("2.mp4", "1.mp4");
+            sourceElement.attr("src", srcString);
+        }
+    }
+
     $(`#${current_video}`).css("opacity", 0);
     setTimeout(() => {
         $(`#v_${old_video}`).css("filter", "blur(0px)");
