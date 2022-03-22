@@ -34,7 +34,7 @@ const onPageLoad = async (loaded) => {
     }
 
     await addVideos();
-    $(`#loopVideo`).attr("loop", "loop");
+    $(`#v_loopVideo`).attr("loop", "loop");
     loadVideos();
 
     view.onStart();
@@ -145,6 +145,7 @@ const next_video = async (index) => {
         }
         return;
     }
+
     current_video = tree[current_video].choices[index].ref;
     $(".controls").css("display", "flex");
     $("#front img").show();
@@ -161,7 +162,10 @@ const next_video = async (index) => {
         remove.push(old_video);
 
         for (let i = 0; i < tree[old_video].choices.length; i++) {
-            if (i != index) remove.push(tree[old_video].choices[i].ref);
+            let oldChoices = tree[old_video].choices;
+            if (i != index && oldChoices[i].ref !== oldChoices[index].ref)  {
+                remove.push(tree[old_video].choices[i].ref);
+            }
         }
 
         view.next_video(remove);

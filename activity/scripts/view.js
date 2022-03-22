@@ -47,9 +47,7 @@ const view = {
 
         $("body").prepend(videoBlock);
 
-        if (id.charAt(0) != "f") {
-            document.getElementById(`v_${id}`).addEventListener('timeupdate', view.update);
-        }
+        document.getElementById(`v_${id}`).addEventListener('timeupdate', view.update);
     },
     update: () => {
         if (view.current_video.duration === undefined || view.current_video.duration === null) return;
@@ -58,13 +56,19 @@ const view = {
         
         if (currentTime >= duration - 1) {
             $(`#v_${current_video}`).css("filter", "blur(5px)");
-            if (!playback) {
+            
+            if (tree[current_video].choices.length === 1) {
+                next_video(0);
+            } else if (!playback) {
                 view.show_question();
             } else {
                 next_video(choices[choiceIndex]);
             }
         }
 
+        view.modifyControls(currentTime, duration);
+    },
+    modifyControls : async (currentTime, duration) => {
         if (!playback) {
             if (currentTime > 10) {
                 $("#back img").show();

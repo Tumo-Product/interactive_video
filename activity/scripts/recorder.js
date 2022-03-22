@@ -70,8 +70,22 @@ $(async () => {
             $(".recorder img").hide();
         }, 50);
 
-        audio.play();
-        player.controls.play("v_loopVideo");
+        let loopIntro = document.getElementById("v_loopIntro");
+        if (loopIntro !== null) {
+            player.controls.play("v_loopIntro");
+            loopIntro.ontimeupdate = () => {
+                if (loopIntro.currentTime >= loopIntro.duration) {
+                    audio.play();
+                    player.controls.play("v_loopVideo");
+                    $("#loopIntro").remove();
+                    console.log(loopIntro);
+                }
+            }
+        } else {
+            audio.play();
+            player.controls.play("v_loopVideo");
+        }
+
         audio.ontimeupdate = () => {
             $(".controls").hide();
             if (audio.currentTime >= audio.duration) {
@@ -86,9 +100,11 @@ $(async () => {
                 };
             }
         }
+        
         $(".recorder").css({ "opacity": 0, "pointer-events": "none" });
         $(".video_block").css("transition", "0s"); await timeout(10);
         $(".video_block").css("opacity", 0);
+        $("#loopIntro").css("opacity", 1);
         $("#loopVideo").css("opacity", 1); $("#thankYou").css("opacity", 1);
 
         window.parent.postMessage({
