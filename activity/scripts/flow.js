@@ -34,7 +34,7 @@ const onPageLoad = async (loaded) => {
     }
 
     await addVideos();
-    $(`#v_finalVideo`).attr("loop", "loop");
+    $(`#loopVideo`).attr("loop", "loop");
     loadVideos();
 
     view.onStart();

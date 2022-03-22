@@ -71,11 +71,11 @@ $(async () => {
         }, 50);
 
         audio.play();
-        player.controls.play("v_finalVideo");
+        player.controls.play("v_loopVideo");
         audio.ontimeupdate = () => {
             $(".controls").hide();
             if (audio.currentTime >= audio.duration) {
-                $("#finalVideo").remove();
+                $("#loopVideo").remove();
 
                 let thankYou = document.getElementById("v_thankYou");
                 player.controls.play("v_thankYou");
@@ -89,7 +89,7 @@ $(async () => {
         $(".recorder").css({ "opacity": 0, "pointer-events": "none" });
         $(".video_block").css("transition", "0s"); await timeout(10);
         $(".video_block").css("opacity", 0);
-        $("#finalVideo").css("opacity", 1); $("#thankYou").css("opacity", 1);
+        $("#loopVideo").css("opacity", 1); $("#thankYou").css("opacity", 1);
 
         window.parent.postMessage({
             application: 'activity-manager',
