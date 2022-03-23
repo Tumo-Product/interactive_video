@@ -61,6 +61,7 @@ $(async () => {
     })
  
     $(".send").click(async () => {
+        $("#music").remove();
         audio.pause();
         audio.currentTime = 0;
         $("#choices").remove();

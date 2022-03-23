@@ -2,7 +2,10 @@ const player = {
     canRewind: true,
     controls : {
         play : (video) => {
-            document.getElementById("music").play();
+            if (document.getElementById("music") !== null) {
+                document.getElementById("music").play();
+            }
+            
             if (video == undefined) {
                 document.getElementById(`v_${current_video}`).play();
             } else {
