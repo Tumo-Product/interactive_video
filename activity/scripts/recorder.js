@@ -53,6 +53,7 @@ $(async () => {
             $("canvas").css("opacity", 1).show();
             $(".progressContainer").removeClass("offscreen");
             $(".progress").css("width",  "0%");
+            $(".stop").addClass("disabledBtn");
             timer = 0;
             rec.start();
             paused = false;
@@ -74,12 +75,15 @@ $(async () => {
         let loopIntro = document.getElementById("v_loopIntro");
         if (loopIntro !== null) {
             player.controls.play("v_loopIntro");
+
             loopIntro.ontimeupdate = () => {
-                if (loopIntro.currentTime >= loopIntro.duration) {
+                if (loopIntro.currentTime >= loopIntro.duration - 9 && audio.paused) {
                     audio.play();
+                }
+                
+                if (loopIntro.currentTime >= loopIntro.duration) {
                     player.controls.play("v_loopVideo");
                     $("#loopIntro").remove();
-                    console.log(loopIntro);
                 }
             }
         } else {
@@ -117,6 +121,7 @@ $(async () => {
 });
 
 const startRecording = () => {
+    $(".stop").addClass("disabledBtn");
     $(".stop").show();
     $(".pause").show();
     $(".progressContainer").removeClass("offscreen");
@@ -193,7 +198,6 @@ const startRecording = () => {
         }
 
         navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
-
     } else {
         console.log('getUserMedia not supported on your browser!');
     }
@@ -230,6 +234,9 @@ function visualize(stream) {
             timer++;
             $(".progress").css("width", `${timer / 3600 * 100}%`);
             $(".start").text((timer / 60).toFixed(1) + "s");
+            if (timer >= 600) {
+                $(".stop").removeClass("disabledBtn");
+            }
             if (timer >= 3600) {
                 rec.stop();
                 paused = true;
