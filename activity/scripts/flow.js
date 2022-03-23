@@ -27,7 +27,8 @@ const onPageLoad = async (loaded) => {
     $("#music").attr("src", videos.music);
 
     for (let i = 0; i < videos.segments.length; i++) {
-        tree[videos.segments[i].id] = { id: videos.segments[i].id, src : videos.segments[i].src, choices : videos.segments[i].choices, loopSrc: videos.segments[i].loopSrc };
+        let segment = videos.segments[i];
+        tree[videos.segments[i].id] = { id: segment.id, src: segment.src, choices : segment.choices, loopSrc: segment.loopSrc, delay: segment.delay };
         tree_keys[i] = videos.segments[i].id;
     }
 

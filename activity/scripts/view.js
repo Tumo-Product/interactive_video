@@ -53,8 +53,9 @@ const view = {
         if (view.current_video.duration === undefined || view.current_video.duration === null) return;
         let duration        = view.current_video.duration;
         let currentTime     = view.current_video.currentTime;
+        let delay           = tree[current_video].delay !== undefined ? tree[current_video].delay : 1;
         
-        if (currentTime >= duration - 1) {
+        if (currentTime >= duration - delay) {
             $(`#v_${current_video}`).css("filter", "blur(5px)");
             
             if (tree[current_video].choices.length === 1) {
