@@ -119,13 +119,13 @@ const addVideos = async () => {
 
 const next_video = async (index) => {
     if (tree[current_video].choices[index].ref === firstShirt) {
-        let sources = ["loopIntro", "loopVideo", "thankYou"];
+        let sources = ["loopIntro", "loopVideo", "thankYou", "leaving"];
 
         for (let src of sources) {
-            let sourceElement = $(`#v_${src} source`);
-            let srcString = sourceElement.attr("src");
+            let video = $(`#v_${src}`);
+            let srcString = video.attr("src");
             srcString = srcString.replace("2.mp4", "1.mp4");
-            sourceElement.attr("src", srcString);
+            video.attr("src", srcString);
         }
     }
 
