@@ -118,17 +118,19 @@ const addVideos = async () => {
 }
 
 const next_video = async (index) => {
-    if (tree[current_video].choices[index].ref === firstShirt) {
-        let sources = ["loopIntro", "loopVideo", "thankYou", "leaving"];
-
-        for (let src of sources) {
-            let video = $(`#v_${src}`);
-            let srcString = video.attr("src");
-            srcString = srcString.replace("2.mp4", "1.mp4");
-            video.attr("src", srcString);
+    if (window.location.href.includes("fastfashion")) {
+        if (tree[current_video].choices[index].ref === firstShirt) {
+            let sources = ["loopIntro", "loopVideo", "thankYou", "leaving"];
+    
+            for (let src of sources) {
+                let video = $(`#v_${src}`);
+                let srcString = video.attr("src");
+                srcString = srcString.replace("2.mp4", "1.mp4");
+                video.attr("src", srcString);
+            }
         }
     }
-
+   
     $(`#${current_video}`).css("opacity", 0);
     setTimeout(() => {
         $(`#v_${old_video}`).css("filter", "blur(0px)");
